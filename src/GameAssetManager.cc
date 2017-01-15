@@ -1,5 +1,6 @@
 #include "GameAssetManager.h"
 
+
 /**
  * Creates a GameAssetManager to load the correct shaders based on the
  * ApplicationMode.
@@ -66,7 +67,8 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  * Draws each GameAsset in the scene graph.
  */
 void GameAssetManager::Draw() {
-  for(auto ga: draw_list) {
+
+for(auto ga: draw_list) {
     ga->Draw(program_token);
   }
 }

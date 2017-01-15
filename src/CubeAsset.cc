@@ -2,6 +2,7 @@
 
 CubeAsset::CubeAsset() {
   // model coordinates, origin at centre.
+  vertex_buffer_length = 24;	
   GLfloat vertex_buffer [] {
 
 		 -0.5f,  0.5f,  0.5f,
@@ -19,7 +20,7 @@ CubeAsset::CubeAsset() {
   element_buffer_length = 36;
   GLuint element_buffer []  {
 	//front face
-    0, 1, 2,
+    	0, 1, 2,
 	0, 2, 3,
 
 	//top face
@@ -52,7 +53,7 @@ CubeAsset::CubeAsset() {
 
   // immediately bind the buffer and transfer the data
   glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer_token);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 24, vertex_buffer, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * vertex_buffer_length, vertex_buffer, GL_STATIC_DRAW);
 
   glGenBuffers(1, &element_buffer_token);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, element_buffer_token);
@@ -80,8 +81,8 @@ void checkError(std::string file, int line) {
 void CubeAsset::Draw(GLuint program_token) {
   if(!glIsProgram(program_token)) {
     std::cerr << "Drawing Cube with invalid program" << std::endl;
-    return;
-  }
+return;
+}
   GLint validation_ok;
   glValidateProgram(program_token);
   glGetProgramiv(program_token, GL_VALIDATE_STATUS, &validation_ok);
@@ -99,6 +100,10 @@ void CubeAsset::Draw(GLuint program_token) {
     }
     exit(-1);
   }
+
+GLuint model_attrib = glGetUniformLocation(program_token, "model_matrix");
+  checkGLError();
+  glUniformMatrix4fv(model_attrib, 1, GL_FALSE, glm::value_ptr(matrix));
 
   GLuint position_attrib = glGetAttribLocation(program_token, "position");
   checkGLError();

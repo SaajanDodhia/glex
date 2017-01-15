@@ -5,6 +5,10 @@
 
 #include <GL/gl.h>
 
+#include <fstream>
+#include <iostream>
+#include <string>
+
 #include "common.h"
 #include "GameAssetManager.h"
 #include "CubeAsset.h"
@@ -22,6 +26,8 @@ class GameWorld {
    * is preferable (in this case) to having some kind of global state.
    */
   GameWorld(ApplicationMode);
+	
+void createWorld();
 
   /**
    * Calling Draw() will draw the entire world.
