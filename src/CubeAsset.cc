@@ -1,19 +1,19 @@
 #include "CubeAsset.h"
 
-CubeAsset::CubeAsset() {
+CubeAsset::CubeAsset(float x, float y, float z) {
   // model coordinates, origin at centre.
   vertex_buffer_length = 24;	
   GLfloat vertex_buffer [] {
 
-		 -0.5f,  0.5f,  0.5f,
-		  0.5f,  0.5f,  0.5f,
-		  0.5f, -0.5f,  0.5f,
-		 -0.5f, -0.5f,  0.5f,
+		 -0.5f+x,  0.5f+y,  0.5f+z,
+		  0.5f+x,  0.5f+y,  0.5f+z,
+		  0.5f+x, -0.5f+y,  0.5f+z,
+		 -0.5f+x, -0.5f+y,  0.5f+z,
 
-		 -0.5f,  0.5f,  -0.5f,
-		  0.5f,  0.5f,  -0.5f,
-		  0.5f, -0.5f,  -0.5f,
-		 -0.5f, -0.5f,  -0.5f,
+		 -0.5f+x,  0.5f+y,  -0.5f+z,
+		  0.5f+x,  0.5f+y,  -0.5f+z,
+		  0.5f+x, -0.5f+y,  -0.5f+z,
+		 -0.5f+x, -0.5f+y,  -0.5f+z,
 
   };
 
@@ -44,6 +44,8 @@ CubeAsset::CubeAsset() {
 	2, 7, 3
 
   };
+
+
 
   // Transfer buffers to the GPU
   //

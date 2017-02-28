@@ -33,7 +33,9 @@ void createWorld();
    * Calling Draw() will draw the entire world.
    */
   void Draw();
- private:
+    //std::shared_ptr<GameAssetManager> asset_manager;
+ 
+ Camera camera;
   std::shared_ptr<GameAssetManager> asset_manager;
 };
 #endif // GAMEWORLD_H

@@ -7,6 +7,9 @@
 #include <utility>
 #include <fstream>
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <GL/gl.h>
 #include <glm/glm.hpp>
@@ -14,6 +17,8 @@
 
 #include "common.h"
 #include "GameAsset.h"
+#include "CubeAsset.h"
+#include "Camera.h"
 
 
 /**
@@ -30,8 +35,10 @@ class GameAssetManager {
   void operator=(GameAssetManager const&); // assignment
   void AddAsset(std::shared_ptr<GameAsset>);
   void Draw();
-
+  void translateCamera(float x, float y, float z);
  private:
+ 
+ Camera camera;
   GLuint CreateGLProgram(std::string &, std::string &);
   GLuint CreateGLESShader(GLenum, std::string &);
   // As this is private and we're writing to the GPU, we will use raw pointers.
@@ -40,6 +47,7 @@ class GameAssetManager {
   // The internal scene graph is a simple list.
   std::vector<std::shared_ptr<GameAsset>> draw_list;
   GLuint program_token;
+  glm::mat4 model= glm::mat4(1.0);
 };
 
 #endif // GAMEASSETMANAGER_H

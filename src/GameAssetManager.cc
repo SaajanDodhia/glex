@@ -1,4 +1,8 @@
 #include "GameAssetManager.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "Camera.h"
 
 
 /**
@@ -56,10 +60,14 @@ void GameAssetManager::operator=(GameAssetManager const& the_manager) {
   // TODO: implement this
 }
 
+void GameAssetManager::translateCamera(float x, float y, float z){
+camera.translate(x,y,z);
+}
+
 /**
  * Adds a GameAsset to the scene graph.
  */
-void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
+void GameAssetManager::AddAsset (std::shared_ptr<GameAsset> the_asset) {
   draw_list.push_back(the_asset);
 }
 
@@ -68,9 +76,20 @@ void GameAssetManager::AddAsset(std::shared_ptr<GameAsset> the_asset) {
  */
 void GameAssetManager::Draw() {
 
+glUseProgram(program_token);
+
+  GLint ModelLocation = glGetUniformLocation(program_token, "model");
+  glUniformMatrix4fv(ModelLocation, 1, GL_FALSE, glm::value_ptr(model));
+  
+ 
+  auto c=camera.getView();
+  GLint CameraLocation = glGetUniformLocation(program_token, "camera");
+  glUniformMatrix4fv(CameraLocation, 1, GL_FALSE, glm::value_ptr(c));
+  
 for(auto ga: draw_list) {
     ga->Draw(program_token);
-  }
+ 
+    }
 }
 
 /**
@@ -165,4 +184,6 @@ std::pair<GLchar *, GLint> GameAssetManager::ReadShader(std::string & shader) {
 
   input_file.close();
   return std::make_pair(buffer, length);
-}
+ }
+ 
+ 

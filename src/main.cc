@@ -83,7 +83,7 @@ std::shared_ptr<SDL_Window> InitWorld() {
 
   SDL_GLContext glContext = SDL_GL_CreateContext(_window);
   if (!glContext) {
-    std::cout << "Failed to create OpenGL context: " << SDL_GetError() << std::endl;
+    std::cout << "Failedauto gameworld = game_world->asset_manager; to create OpenGL context: " << SDL_GetError() << std::endl;
     return nullptr;
   }
 
@@ -149,6 +149,7 @@ int main(int argc, char ** argv) {
 
   // Call the function "tick" every delay milliseconds
   SDL_AddTimer(delay, tick, NULL);
+  auto gameworld = game_world->asset_manager;
 
   // Add the main event loop
   SDL_Event event;
@@ -159,8 +160,48 @@ int main(int argc, char ** argv) {
       break;
     case SDL_USEREVENT:
       Draw(window, game_world);
-
       break;
+    case SDL_KEYDOWN:
+	switch(event.key.keysym.sym){
+	  /**
+ 	  * Move camera to the left.
+ 	  */
+	  case SDLK_a:
+	  gameworld->translateCamera(0.2f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera to the right.
+ 	  */	
+	  case SDLK_d:
+	  gameworld->translateCamera(-0.2f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera backwards.
+ 	  */
+	  case SDLK_s:
+	  gameworld->translateCamera(0.0f,0.0f,-0.2f);
+	  break;
+	  /**
+ 	  * Move camera forwards.
+ 	  */
+	  case SDLK_w:
+	  gameworld->translateCamera(0.0f,0.0f,0.2f);
+	  break;
+	  /**translateCamera
+ 	  * Move camera downwards.
+ 	  */
+	  case SDLK_LCTRL:
+	  gameworld->translateCamera(0.0f,0.2f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera upwards.
+ 	  */
+	  case SDLK_LSHIFT:
+	  gameworld->translateCamera(0.0f,-0.2f,0.0f);
+	  break;
+  default:
+  break;
+}
     default:
       break;
     }
