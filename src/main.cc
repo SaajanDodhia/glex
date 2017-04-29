@@ -138,7 +138,7 @@ ApplicationMode ParseOptions (int argc, char ** argv) {
 }
 
 int main(int argc, char ** argv) {
-  Uint32 delay = 1000/50; // in milliseconds
+  Uint32 delay = 1000/40; // in milliseconds
 
   auto mode = ParseOptions(argc, argv);
   auto window = InitWorld();
@@ -161,7 +161,6 @@ int main(int argc, char ** argv) {
     case SDL_USEREVENT:
       Draw(window, game_world);
       break;
-    case SDL_KEYUP:
     case SDL_KEYDOWN:
 	switch(event.key.keysym.sym){
 	  /**

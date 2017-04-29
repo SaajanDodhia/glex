@@ -1,8 +1,9 @@
 #version 130
 
 in vec3 position;
-uniform mat4 model;
 out vec3 frag_color;
+uniform vec3 color;
+uniform mat4 model;
 uniform mat4 camera;
 
 mat4 projection(
@@ -58,5 +59,6 @@ void main() {
                       //* rotate_x(radians(45.0))
                       //* rotate_y(radians(45.0))
                       * vec4(position, 1.0f);
-      frag_color = vec3(1.0, 0.0, 1.0); // white
+      frag_color = color; // white
+
 }

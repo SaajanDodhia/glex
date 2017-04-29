@@ -1,6 +1,8 @@
 #include "CubeAsset.h"
 
-CubeAsset::CubeAsset(float x, float y, float z) {
+CubeAsset::CubeAsset(float x, float y, float z, float r, float b, float g) {
+
+  color = glm::vec3(r,b,g);
   // model coordinates, origin at centre.
   vertex_buffer_length = 24;	
   GLfloat vertex_buffer [] {
@@ -103,9 +105,14 @@ return;
     exit(-1);
   }
 
-GLuint model_attrib = glGetUniformLocation(program_token, "model_matrix");
+GLuint model_attrib = glGetUniformLocation(program_token, "model");
   checkGLError();
   glUniformMatrix4fv(model_attrib, 1, GL_FALSE, glm::value_ptr(matrix));
+
+
+GLuint color_attrib = glGetUniformLocation(program_token, "color");
+glUniform3fv(color_attrib, 1, glm::value_ptr(color));
+
 
   GLuint position_attrib = glGetAttribLocation(program_token, "position");
   checkGLError();

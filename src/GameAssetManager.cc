@@ -76,6 +76,10 @@ void GameAssetManager::AddAsset (std::shared_ptr<GameAsset> the_asset) {
  */
 void GameAssetManager::Draw() {
 
+ for(auto ga: draw_list) {
+     ga->Draw(program_token);
+  }
+
 glUseProgram(program_token);
 
   GLint ModelLocation = glGetUniformLocation(program_token, "model");
