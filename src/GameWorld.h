@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string>
 
+
 #include "common.h"
 #include "GameAssetManager.h"
 #include "CubeAsset.h"
@@ -33,9 +34,10 @@ void createWorld();
    * Calling Draw() will draw the entire world.
    */
   void Draw();
-    //std::shared_ptr<GameAssetManager> asset_manager;
  
  Camera camera;
   std::shared_ptr<GameAssetManager> asset_manager;
+
+
 };
 #endif // GAMEWORLD_H

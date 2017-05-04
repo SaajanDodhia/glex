@@ -18,7 +18,7 @@ class CubeAsset : public GameAsset {
  private:
   GLuint vertex_buffer_length, element_buffer_length;
   GLuint vertex_buffer_token, element_buffer_token;
-  glm::vec3 color;
+  glm::vec3 color; // Colour of the Cube
  
 };
 

@@ -18,7 +18,9 @@ void translate(float x,float y, float z);
 
 private:
 
-glm:: mat4 ViewMatrix;
+GLfloat x_pos, y_pos, z_pos;
+glm::vec3 cameraPosition, cameraTarget;
+glm::mat4 ViewMatrix;
 
 	
 

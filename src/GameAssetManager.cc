@@ -82,12 +82,12 @@ void GameAssetManager::Draw() {
 
 glUseProgram(program_token);
 
-  GLint ModelLocation = glGetUniformLocation(program_token, "model");
+  GLint ModelLocation = glGetUniformLocation(program_token, "model");   //Finds the Model Location
   glUniformMatrix4fv(ModelLocation, 1, GL_FALSE, glm::value_ptr(model));
   
  
   auto c=camera.getView();
-  GLint CameraLocation = glGetUniformLocation(program_token, "camera");
+  GLint CameraLocation = glGetUniformLocation(program_token, "camera"); //Finds the Camera Location
   glUniformMatrix4fv(CameraLocation, 1, GL_FALSE, glm::value_ptr(c));
   
 for(auto ga: draw_list) {

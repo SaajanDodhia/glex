@@ -138,7 +138,7 @@ ApplicationMode ParseOptions (int argc, char ** argv) {
 }
 
 int main(int argc, char ** argv) {
-  Uint32 delay = 1000/40; // in milliseconds
+  Uint32 delay = 1000/50; // in milliseconds
 
   auto mode = ParseOptions(argc, argv);
   auto window = InitWorld();
@@ -167,44 +167,83 @@ int main(int argc, char ** argv) {
  	  * Move camera to the left.
  	  */
 	  case SDLK_a:
-	  gameworld->translateCamera(0.5f,0.0f,0.0f);
+	  gameworld->translateCamera(0.7f,0.0f,0.0f);
 	  break;
 	  /**
  	  * Move camera to the right.
  	  */	
 	  case SDLK_d:
-	  gameworld->translateCamera(-0.5f,0.0f,0.0f);
+	  gameworld->translateCamera(-0.7f,0.0f,0.0f);
 	  break;
 	  /**
  	  * Move camera backwards.
  	  */
 	  case SDLK_s:
-	  gameworld->translateCamera(0.0f,0.0f,-0.5f);
+	  gameworld->translateCamera(0.0f,0.0f,-0.7f);
 	  break;
 	  /**
  	  * Move camera forwards.
  	  */
 	  case SDLK_w:
-	  gameworld->translateCamera(0.0f,0.0f,0.5f);
+	  gameworld->translateCamera(0.0f,0.0f,0.7f);
 	  break;
 	  /**translateCamera
  	  * Move camera downwards.
  	  */
-	  case SDLK_LCTRL:
-	  gameworld->translateCamera(0.0f,0.5f,0.0f);
+	  case SDLK_e:
+	  gameworld->translateCamera(0.0f,0.7f,0.0f);
 	  break;
 	  /**
  	  * Move camera upwards.
  	  */
-	  case SDLK_LSHIFT:
-	  gameworld->translateCamera(0.0f,-0.5f,0.0f);
+	  case SDLK_q:
+	  gameworld->translateCamera(0.0f,-0.7f,0.0f);
 	  break;
 	 
   default:
   break;
-}   
+case SDL_KEYUP:
+	switch(event.key.keysym.sym){
+	  /**
+ 	  * Move camera to the left.
+ 	  */
+	  case SDLK_a:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera to the right.
+ 	  */	
+	  case SDLK_d:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera backwards.
+ 	  */
+	  case SDLK_s:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera forwards.
+ 	  */
+	  case SDLK_w:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	  /**translateCamera
+ 	  * Move camera downwards.
+ 	  */
+	  case SDLK_q:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	  /**
+ 	  * Move camera upwards.
+ 	  */
+	  case SDLK_e:
+	  gameworld->translateCamera(0.0f,0.0f,0.0f);
+	  break;
+	}	   
+}
     default:
-      break;
+    break;
       }
    } 
 }
